@@ -1,6 +1,7 @@
 
 $color: #DEDEEA;
 $color-dark: rgba(109, 108, 108, 0.68);
+
 .auth-container {
     width: 100%;
     height: auto;
@@ -8,8 +9,8 @@ $color-dark: rgba(109, 108, 108, 0.68);
     margin: 0;
     display: flex;
     align-items: center;
-    flex-direction: column;
     justify-content: center;
+    flex-direction: column;
 }
 
 .auth-btns {
@@ -20,6 +21,7 @@ $color-dark: rgba(109, 108, 108, 0.68);
     justify-content: end;
     transition: 0.5s;
     align-items: center;
+
     button {
         background-color: unset;
         padding: 0.5rem 1rem;
@@ -32,7 +34,7 @@ $color-dark: rgba(109, 108, 108, 0.68);
     button:hover,
     button:focus {
         cursor: pointer;
-        // box-shadow: none !important;
+         box-shadow: none !important;
         outline: none !important;
     }
     .active {
@@ -52,7 +54,6 @@ $color-dark: rgba(109, 108, 108, 0.68);
     border-radius: 0.5rem !important;
     padding: 0.5rem 0.5rem;
     padding: 2rem;
-    direction: rtl;
 }
 
 .title-auth {
@@ -68,7 +69,7 @@ $color-dark: rgba(109, 108, 108, 0.68);
     background-color: #f9f9f9;
     padding: 0.3rem 1rem;
     border-radius: 20px;
-    margin: 20px 10px;
+    margin: 20px 10px 0 0 ;
     img {
         width: 23px;
         opacity: 50%;
@@ -85,7 +86,6 @@ $color-dark: rgba(109, 108, 108, 0.68);
             outline: none !important;
             background-color: unset;
         }
-        font-family:'vazir';
         color:rgb(53, 52, 52);
     }
 }
