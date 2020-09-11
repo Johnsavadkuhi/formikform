@@ -3,10 +3,9 @@ import { Form  } from "reactstrap";
 import TextBox from "./TextBox";
 import Submit from "./Submit";
 import { useForm } from "react-hook-form";
-
 import iconSrc from "../../Assets/icons/email.svg";
 import passIconSrc from "../../Assets/icons/password.svg";
-
+import userIconSrc from "../../Assets/icons/user.svg"
 
  function SignUp() {
 
@@ -17,12 +16,32 @@ import passIconSrc from "../../Assets/icons/password.svg";
 
   const textBoxProps = (which) => {
     
+    if(which === "firstname" ) {
+      return {
+        innerRef : register({require:false}),
+        iconSrc : userIconSrc , 
+        type:"text" , 
+        placeholder : "First Name ",
+        name:"firstName", 
+        className:"input-text"
+      }
+    } 
+    if(which==="lastname") {
+      return {
+        innerRef : register({require:false}),
+        iconSrc : userIconSrc , 
+        type:"text" , 
+        placeholder : "Last Name ",
+        name:"lastname", 
+        className:"input-text"
+      }
+    }
     if (which === "email")
       return {
-        innerRef:register({required:1}) , 
+        innerRef:register({required:true}) , 
         iconSrc,
         type: "email",
-        placeholder: "ایمیل",
+        placeholder: "Email",
         name: "email",
         className: "input-text",
       } 
@@ -30,7 +49,7 @@ import passIconSrc from "../../Assets/icons/password.svg";
         innerRef : register({required:true}), 
         iconSrc: passIconSrc,
         type: "password",
-        placeholder: "رمز عبور",
+        placeholder: "Password",
         name: "password",
         className: "input-text",
       }
@@ -41,11 +60,15 @@ import passIconSrc from "../../Assets/icons/password.svg";
      
       <Form className="sign-up" onSubmit={handleSubmit(onSubmit)}>
         
-          <TextBox {...textBoxProps("email")} />
+        <TextBox {...textBoxProps("firstname")}/>
 
-          <TextBox {...textBoxProps("password")} />
+        <TextBox {...textBoxProps("lastname")} />
 
-          <Submit children="ثبت نام" />
+        <TextBox {...textBoxProps("email")} />
+
+        <TextBox {...textBoxProps("password")} />
+
+       <Submit children="Sign Up " />
 
       
       </Form>
