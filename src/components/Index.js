@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SignUp from "./SignUp";
+import SignUp from "./Auth/SignUp";
 import ErrorBoundary from "./Error";
-import CheckInternet from './components/Network/CheckInternet';
+import CheckInternet from './Network/CheckInternet';
 import AuthHeader from "./AuthHeader/AuthHeader";
 
-export default function Auth(props) {
+ function Auth(props) {
   const [login, setLogin] = useState(props.login);
 
   return (
@@ -25,3 +25,6 @@ export default function Auth(props) {
     </div>
   );
 }
+ 
+
+export default Auth ; 
