@@ -4,8 +4,8 @@ import TextBox from "./TextBox";
 import Submit from "./Submit";
 import { useForm } from "react-hook-form";
 
-import iconSrc from "../Assets/icons/email.svg";
-import passIconSrc from "../Assets/icons/password.svg";
+import iconSrc from "../../Assets/icons/email.svg";
+import passIconSrc from "../../Assets/icons/password.svg";
 
 
  function SignUp() {
