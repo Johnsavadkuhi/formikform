@@ -2,30 +2,31 @@ import React, { useState } from "react";
 import SignUp from "./SignUp";
 import CheckInternet from '../Network/CheckInternet';
 import AuthHeader from "./AuthHeader";
-import AuthContainer from './AuthContainer'; 
+import AuthContainer from './AuthContainer';
 
- function Auth(props) {
-  const [login, setLogin] = useState(false);
+function Auth() {
+    const [login, setLogin] = useState(false);
 
-  return <AuthContainer >
+    return <AuthContainer >
 
- 
+        <CheckInternet>
 
-      <CheckInternet>
+            <AuthHeader login={login} setLogin={setLogin} />
 
-        <AuthHeader login={login} setLogin={setLogin} />
-       
-        {login ? (<p>
-            The Login Form
-            </p> 
-        ) : (
-          
-              <SignUp />
-          )}
-      </CheckInternet>
+            {login ? (
+                <p>
 
-   </AuthContainer>
+                    The Login Form
+
+                </p>
+            ) : (
+
+                    <SignUp />
+                )}
+        </CheckInternet>
+
+    </AuthContainer>
 }
- 
 
-export default Auth ; 
+
+export default Auth; 
