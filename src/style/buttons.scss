@@ -1,0 +1,35 @@
+$color: #DEDEEA;
+
+.auth-btns {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    text-align: center;
+    width: auto;
+    justify-content: center;
+    transition: 0.5s;
+    align-items: center;
+    margin-top : 40px ; 
+
+    button {
+        background-color: unset;
+        padding: 0.5rem 1rem;
+        border: none;
+        color: $color;
+        font-family: 'iran-sans';
+        outline: none !important;
+        height: 45px;
+    }
+    button:hover,
+    button:focus {
+        cursor: pointer;
+         box-shadow: none !important;
+        outline: none !important;
+    }
+    .active {
+        color: black;
+        border-bottom: 3px solid rgba(255, 83, 83, 1) !important;
+    }
+    width: 100%;
+    background-repeat:no-repeat;
+    height: 100%;
+}
