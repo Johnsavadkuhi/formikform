@@ -1,13 +1,13 @@
 import React from 'react';
-import SignUp from './SignUp';
+import Auth from '.'; 
 
 function App() {
 
-  return (
-    <div>
-     <SignUp />
-    </div>
-  );
+  return <>
+  
+
+
+  </>
 }
 
 export default App;
