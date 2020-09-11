@@ -4,9 +4,7 @@ import Auth from '.';
 function App() {
 
   return <>
-  
-
-
+  <Auth/>
   </>
 }
 
