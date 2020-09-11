@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SignUp from "./Auth/SignUp";
-import ErrorBoundary from "./Error";
 import CheckInternet from './Network/CheckInternet';
 import AuthHeader from "./AuthHeader";
 
@@ -11,16 +10,14 @@ import AuthHeader from "./AuthHeader";
     <div className="auth-container">
 
       <CheckInternet>
+
         <AuthHeader login={login} setLogin={setLogin} />
-        {login ? (
-          <ErrorBoundary>
-            {/* <Login /> */}
-            the login form 
-          </ErrorBoundary>
+        {login ? (<p>
+            the login form
+            </p> 
         ) : (
-            <ErrorBoundary>
+          
               <SignUp />
-            </ErrorBoundary>
           )}
       </CheckInternet>
     </div>
