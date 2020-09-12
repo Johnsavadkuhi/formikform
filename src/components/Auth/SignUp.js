@@ -5,13 +5,29 @@ import Submit from "./Submit";
 import { useForm } from "react-hook-form";
 import iconSrc from "../../Assets/icons/email.svg";
 import passIconSrc from "../../Assets/icons/password.svg";
-import userIconSrc from "../../Assets/icons/user.svg"
+import userIconSrc from "../../Assets/icons/user.svg";
+import * as yup from "yup"; 
+import {yupResolver} from "@hookform/resolvers"; 
+
+
+const schema = yup.object().shape({
+  firstname:yup.string().required("First Name is required. ") , 
+  lastname: yup.string().required("Last Name is requrired. ") ,
+  email:yup.string().email("Email is required. ") ,
+  password : yup.string().required("Password is required.") 
+})
 
  function SignUp() {
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit , errors } = useForm({
+    resolver : yupResolver(schema)
+  });
 
-  const onSubmit = data => console.log("data : " , data );
+  const onSubmit = data => {
+    
+    console.log("data : " , data )
+  
+  };
 
 
   const textBoxProps = (which) => {
@@ -22,8 +38,9 @@ import userIconSrc from "../../Assets/icons/user.svg"
         iconSrc : userIconSrc , 
         type:"text" , 
         placeholder : "First Name ",
-        name:"firstName", 
-        className:"input-text"
+        name:"firstname", 
+        className:"input-text",
+        error : errors.firstname 
       }
     } 
     if(which==="lastname") {
@@ -33,10 +50,11 @@ import userIconSrc from "../../Assets/icons/user.svg"
         type:"text" , 
         placeholder : "Last Name ",
         name:"lastname", 
-        className:"input-text"
+        className:"input-text",
+        error : errors.lastname 
       }
     }
-    if (which === "email")
+    if (which === "email"){
       return {
         innerRef:register({required:true}) , 
         iconSrc,
@@ -44,7 +62,10 @@ import userIconSrc from "../../Assets/icons/user.svg"
         placeholder: "Email",
         name: "email",
         className: "input-text",
+        error:errors.email
       } 
+    }
+    if(which ==="password"){
       return {
         innerRef : register({required:true}), 
         iconSrc: passIconSrc,
@@ -52,7 +73,9 @@ import userIconSrc from "../../Assets/icons/user.svg"
         placeholder: "Password",
         name: "password",
         className: "input-text",
+        error:errors.password
       }
+    }
 
   };
 
