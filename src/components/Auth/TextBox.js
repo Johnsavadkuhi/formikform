@@ -1,35 +1,12 @@
 
 import React from "react";
 
-import React, { useEffect, useState } from "react";
-
-import { Input, FormText } from "reactstrap";
+import { Input,  } from "reactstrap";
 
 function TextBox(props) {
 
-  const { iconSrc, error, ...restProps } = props;
-  const [isValid, setIsValid] = useState(false);
-  const [isInvalid, setIsInvalid] = useState(false);
-
-  useEffect(() => {
-    
-    if (error) {
-
-      setIsInvalid(true)
-      setIsValid(false)
-
-    } else {
-
-      if (isInvalid !== false) {
-
-        setIsValid(true)
-        
-      }
-      setIsInvalid(false)
-      
-    }
-
-  }, [isInvalid, error])
+  const { iconSrc, error , hasError, ...restProps } = props;
+ 
 
 
   return (
@@ -43,13 +20,7 @@ function TextBox(props) {
 
       </div>
 
-      {hasError && <FormText >{error}</FormText>}
 
-        <Input valid={isValid} invalid={isInvalid} {...restProps} />
-
-      </div>
-
-      {error && <FormText >{error.message}</FormText>}
     </>
   );
 }
