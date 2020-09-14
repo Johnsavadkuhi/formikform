@@ -47,8 +47,14 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.firstname}
-
+        valid = {false}
+        invalid ={formik.touched.firstname && formik.errors.firstname? true : false }
+      
       />
+
+       {formik.touched.firstname && formik.errors.firstname ? (
+         <div style={{color:"red"}}>{formik.errors.firstname}</div>
+       ) : null}
 
       <TextBox
         iconSrc={userIconSrc}
@@ -60,8 +66,14 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.lastname}
+        valid ={false}
+        invalid ={formik.touched.lastname && formik.errors.lastname? true : false }
 
       />
+       
+       {formik.touched.lastname && formik.errors.lastname ? (
+         <div style={{color:"red"}}>{formik.errors.lastname}</div>
+       ) : null}
 
       <TextBox
         iconSrc={iconSrc}
@@ -73,8 +85,13 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.email}
+        valid={false}
+        invalid ={formik.touched.email && formik.errors.email? true : false }
 
       />
+        {formik.touched.email && formik.errors.email ? (
+         <div style={{color:"red"}}>{formik.errors.email}</div>
+       ) : null}
 
       <TextBox
         iconSrc={passIconSrc}
@@ -86,7 +103,13 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.password}
+        valid={false}
+        invalid ={formik.touched.password && formik.errors.password? true : false }
+        
       />
+       {formik.touched.password && formik.errors.password ? (
+         <div style={{color:"red"}}>{formik.errors.password}</div>
+       ) : null}
 
       <Submit children="Sign Up " />
 
