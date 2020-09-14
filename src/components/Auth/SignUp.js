@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "reactstrap";
 import TextBox from "./TextBox";
 import Submit from "./Submit";
@@ -16,7 +16,7 @@ function SignUp() {
     firstname: Yup.string().required("Required"),
     lastname: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email address").required("Required"), 
-    password:Yup.string().required("Required")
+    password:Yup.string().min(8 , 'Enter at least 8 characters!!').required("Required")
   }) ; 
 
   const onSubmit = (values)=>{
@@ -24,7 +24,6 @@ function SignUp() {
   }
 
   const formik = useFormik({ initialValues , validationSchema , onSubmit })
-
 
   return (
 
@@ -40,7 +39,9 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.firstname}
-        valid = {false}
+        valid = {
+          formik.values.firstname.length > 0 ? true  &&  !(formik.touched.firstname && formik.errors.firstname? true : false ) : false 
+        }
         invalid ={formik.touched.firstname && formik.errors.firstname? true : false }
         formik = {formik }
 
@@ -56,7 +57,8 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.lastname}
-        valid ={false}
+        valid ={formik.values.lastname.length > 0 ? true  &&  !(formik.touched.lastname && formik.errors.lastname? true : false ) : false 
+        }
         invalid ={formik.touched.lastname && formik.errors.lastname? true : false }
         formik = {formik }
 
@@ -73,7 +75,8 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.email}
-        valid={false}
+        valid={formik.values.email.length > 0 ? true  &&  !(formik.touched.email && formik.errors.email? true : false ) : false 
+        }
         invalid ={formik.touched.email && formik.errors.email? true : false }
         formik = {formik }
 
@@ -90,7 +93,10 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.password}
-        valid={false}
+        valid={
+          formik.values.password.length > 0 ? true  &&  !(formik.touched.password && formik.errors.password? true : false ) : false 
+
+        }
         invalid ={formik.touched.password && formik.errors.password? true : false }
         formik = {formik }
 
