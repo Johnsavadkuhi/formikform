@@ -1,11 +1,11 @@
 
 import React from "react";
 
-import { Input,  } from "reactstrap";
+import { Input } from "reactstrap";
 
 function TextBox(props) {
 
-  const { iconSrc, error , hasError, ...restProps } = props;
+  const { iconSrc  , ...restProps } = props;
  
 
 
@@ -16,10 +16,10 @@ function TextBox(props) {
         <img src={iconSrc} alt="parallex img" />
 
 
-        <Input valid={hasError} invalid={hasError} {...restProps} />
+        <Input {...restProps} />
 
       </div>
-
+      
 
     </>
   );
