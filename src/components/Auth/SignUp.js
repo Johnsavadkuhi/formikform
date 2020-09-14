@@ -10,28 +10,21 @@ import * as Yup from 'yup';
 
 function SignUp() {
 
-  const formik = useFormik({
-    initialValues: {
-      firstname: '',
-      lastname: '',
-      email: '',
-      password: ''
+  const initialValues = { firstname: '',lastname: '',email: '',password: ''} ; 
 
-    },
+  const validationSchema = Yup.object({
+    firstname: Yup.string().required("Required"),
+    lastname: Yup.string().required("Required"),
+    email: Yup.string().email("Invalid email address").required("Required"), 
+    password:Yup.string().required("Required")
+  }) ; 
 
-    validationSchema: Yup.object({
-      firstname: Yup.string().required("Required"),
-      lastname: Yup.string().required("Required"),
-      email: Yup.string().email("Invalid email address")
-        .required("Required"), 
-        password:Yup.string().required("Required")
-    }),
+  const onSubmit = (values)=>{
+    console.log(values);
+  }
+  
+  const formik = useFormik({ initialValues , validationSchema , onSubmit })
 
-    onSubmit: values => {
-
-      console.log(values);
-    }
-  })
 
   return (
 
