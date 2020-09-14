@@ -1,5 +1,5 @@
 import React from "react";
-import { Label, Input, FormText } from "reactstrap";
+import {  Input, FormText } from "reactstrap";
 
 function TextBox(props) {
 
@@ -9,7 +9,7 @@ function TextBox(props) {
     <>
       <div className="inputs-text">
         <img src={iconSrc} alt="parallex img" />
-        <Label htmlFor={props.type === "email" ? "email" : "password"}></Label>
+        {/* <Label htmlFor={props.type === "email" ? "email" : "password"}></Label> */}
         <Input valid={hasError} invalid={hasError}
           {...restProps}
         />
