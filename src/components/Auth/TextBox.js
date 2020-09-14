@@ -1,4 +1,8 @@
+
+import React from "react";
+
 import React, { useEffect, useState } from "react";
+
 import { Input, FormText } from "reactstrap";
 
 function TextBox(props) {
@@ -33,6 +37,13 @@ function TextBox(props) {
       <div className="inputs-text">
 
         <img src={iconSrc} alt="parallex img" />
+
+
+        <Input valid={hasError} invalid={hasError} {...restProps} />
+
+      </div>
+
+      {hasError && <FormText >{error}</FormText>}
 
         <Input valid={isValid} invalid={isInvalid} {...restProps} />
 
