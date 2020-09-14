@@ -95,6 +95,7 @@ import * as Yup from 'yup' ;
         <TextBox 
           iconSrc = {userIconSrc } 
           type="text"  
+          id="lastname"
           placeholder = "Last Name "
           name="lastname"
           className="input-text"
@@ -107,6 +108,7 @@ import * as Yup from 'yup' ;
         <TextBox 
         iconSrc
         type="email"
+        id="email"
         placeholder="Email"
         name= "email"
         className= "input-text"
@@ -119,6 +121,7 @@ import * as Yup from 'yup' ;
         <TextBox 
         iconSrc = {passIconSrc}
         type="password"
+        id="password"
         placeholder= "Password"
         name= "password"
         className= "input-text"
