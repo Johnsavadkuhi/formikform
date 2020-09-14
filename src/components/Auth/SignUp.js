@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form } from "reactstrap";
 import TextBox from "./TextBox";
 import Submit from "./Submit";
@@ -63,7 +63,7 @@ function SignUp() {
         formik = {formik }
 
       />
-       
+         
 
       <TextBox
         id="email"
@@ -95,7 +95,6 @@ function SignUp() {
         value={formik.values.password}
         valid={
           formik.values.password.length > 0 ? true  &&  !(formik.touched.password && formik.errors.password? true : false ) : false 
-
         }
         invalid ={formik.touched.password && formik.errors.password? true : false }
         formik = {formik }
