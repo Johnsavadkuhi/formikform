@@ -5,8 +5,8 @@ import { Input } from "reactstrap";
 
 function TextBox(props) {
 
-  const { iconSrc  , ...restProps } = props;
- 
+  const { iconSrc,formik ,  ...restProps } = props;
+
 
 
   return (
@@ -15,11 +15,13 @@ function TextBox(props) {
 
         <img src={iconSrc} alt="parallex img" />
 
-
         <Input {...restProps} />
 
       </div>
-      
+      {formik.touched.firstname && formik.errors.firstname ? (
+         <div style={{color:"red"}}>{formik.errors.firstname}</div>
+       ) : null}
+
 
     </>
   );
