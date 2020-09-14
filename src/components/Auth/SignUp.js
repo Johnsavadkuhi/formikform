@@ -22,7 +22,7 @@ function SignUp() {
   const onSubmit = (values)=>{
     console.log(values);
   }
-  
+
   const formik = useFormik({ initialValues , validationSchema , onSubmit })
 
 
@@ -42,17 +42,14 @@ function SignUp() {
         value={formik.values.firstname}
         valid = {false}
         invalid ={formik.touched.firstname && formik.errors.firstname? true : false }
-      
+        formik = {formik }
+
       />
 
-       {formik.touched.firstname && formik.errors.firstname ? (
-         <div style={{color:"red"}}>{formik.errors.firstname}</div>
-       ) : null}
-
       <TextBox
+        id="lastname"
         iconSrc={userIconSrc}
         type="text"
-        id="lastname"
         placeholder="Last Name "
         name="lastname"
         className="input-text"
@@ -61,17 +58,15 @@ function SignUp() {
         value={formik.values.lastname}
         valid ={false}
         invalid ={formik.touched.lastname && formik.errors.lastname? true : false }
+        formik = {formik }
 
       />
        
-       {formik.touched.lastname && formik.errors.lastname ? (
-         <div style={{color:"red"}}>{formik.errors.lastname}</div>
-       ) : null}
 
       <TextBox
+        id="email"
         iconSrc={iconSrc}
         type="email"
-        id="email"
         placeholder="Email"
         name="email"
         className="input-text"
@@ -80,16 +75,15 @@ function SignUp() {
         value={formik.values.email}
         valid={false}
         invalid ={formik.touched.email && formik.errors.email? true : false }
+        formik = {formik }
 
       />
-        {formik.touched.email && formik.errors.email ? (
-         <div style={{color:"red"}}>{formik.errors.email}</div>
-       ) : null}
+       
 
       <TextBox
+        id="password"
         iconSrc={passIconSrc}
         type="password"
-        id="password"
         placeholder="Password"
         name="password"
         className="input-text"
@@ -98,12 +92,10 @@ function SignUp() {
         value={formik.values.password}
         valid={false}
         invalid ={formik.touched.password && formik.errors.password? true : false }
-        
-      />
-       {formik.touched.password && formik.errors.password ? (
-         <div style={{color:"red"}}>{formik.errors.password}</div>
-       ) : null}
+        formik = {formik }
 
+      />
+      
       <Submit children="Sign Up " />
 
 
