@@ -1,72 +1,10 @@
 @import 'authContainer'; 
 @import 'buttons'; 
 @import  'singUp'; 
+@import 'inputs' ; 
 
 $color-dark: rgba(109, 108, 108, 0.68);
 
-
-
-
-// .title-auth {
-//     text-align: center;
-//     font-size: 1em;
-//     margin: 1rem 0;
-//     padding-bottom: 1rem;
-//     color: #707172;
-// }
-
-.inputs-text {
-    display: flex;
-    background-color: #f9f9f9;
-    padding: 0.3rem 1rem;
-    margin: 20px 10px 0 0 ;
-    border-left: 3px solid #ff5353;
-    -webkit-background-clip: padding-box; /* for Safari */
-    background-clip: padding-box; 
-    
-    &:focus,
-    &:hover {
-        box-shadow: none !important;
-        outline: none !important;
-        background-color: white;
-    }
-    img {
-        width: 23px;
-        opacity: 50%;
-    }
-    .input-text {
-        border: none!important;
-        outline: none !important;
-        background-color: unset;
-        font-size: 1rem;
-        
-        width: 200px !important;
-        &:focus,
-        &:hover {
-            box-shadow: none !important;
-            outline: none !important;
-            background-color: unset;
-        }
-        color:rgb(53, 52, 52);
-    }
-}
-
-.login-links-container {
-    direction: rtl;
-    text-align: start;
-    padding: 0 20px;
-    margin: 5px 0 40px 0;
-}
-
-.forgot-pass {
-    font-size: 11px;
-    color: $color-dark;
-    &:focus,
-    &:hover {
-        text-decoration: none;
-        color: $color-dark;
-    }
-}
 
 .round {
     position: relative;
