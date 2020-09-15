@@ -39,12 +39,9 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.firstname}
-        valid = {
-          formik.values.firstname.length > 0 ? true  &&  !(formik.touched.firstname && formik.errors.firstname? true : false ) : false 
-        }
+        valid = {formik.values.firstname.length > 0 ? true  &&  !(formik.touched.firstname && formik.errors.firstname? true : false ) : false }
         invalid ={formik.touched.firstname && formik.errors.firstname? true : false }
         formik = {formik }
-
       />
 
       <TextBox
@@ -57,11 +54,9 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.lastname}
-        valid ={formik.values.lastname.length > 0 ? true  &&  !(formik.touched.lastname && formik.errors.lastname? true : false ) : false 
-        }
+        valid ={formik.values.lastname.length > 0 ? true  &&  !(formik.touched.lastname && formik.errors.lastname? true : false ) : false }
         invalid ={formik.touched.lastname && formik.errors.lastname? true : false }
         formik = {formik }
-
       />
          
 
@@ -75,11 +70,9 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.email}
-        valid={formik.values.email.length > 0 ? true  &&  !(formik.touched.email && formik.errors.email? true : false ) : false 
-        }
+        valid={formik.values.email.length > 0 ? true  &&  !(formik.touched.email && formik.errors.email? true : false ) : false }
         invalid ={formik.touched.email && formik.errors.email? true : false }
         formik = {formik }
-
       />
        
 
@@ -93,12 +86,9 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.password}
-        valid={
-          formik.values.password.length > 0 ? true  &&  !(formik.touched.password && formik.errors.password? true : false ) : false 
-        }
+        valid={formik.values.password.length > 0 ? true && !(formik.touched.password && formik.errors.password? true : false ) : false }
         invalid ={formik.touched.password && formik.errors.password? true : false }
         formik = {formik }
-
       />
       
       <Submit children="Sign Up " />
