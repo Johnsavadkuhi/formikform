@@ -16,7 +16,7 @@ function TextBox(props) {
         <Input {...restProps} />
 
       </div>
-      <TextBoxValidation  formik = {formik} name={props.name} />
+      {/* <TextBoxValidation  formik = {formik} name={props.name} /> */}
     
 
     </>
