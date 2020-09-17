@@ -6,7 +6,7 @@ import TextBoxValidation from './TexBoxValidation';
 
 function TextBox(props) {
 
-  const { iconSrc,formik ,  ...restProps } = props;
+  const { iconSrc ,formik ,  ...restProps } = props;
   return (
     <>
       <div className="inputs-text">
@@ -16,7 +16,7 @@ function TextBox(props) {
         <Input {...restProps} />
 
       </div>
-      {/* <TextBoxValidation  formik = {formik} name={props.name} /> */}
+      <TextBoxValidation  formik = {formik} name={props.name} />
     
 
     </>
