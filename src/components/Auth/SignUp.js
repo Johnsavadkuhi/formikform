@@ -7,6 +7,7 @@ import passIconSrc from "../../Assets/icons/password.svg";
 import userIconSrc from "../../Assets/icons/user.svg"
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import TextBoxValidation from './TexBoxValidation'; 
 
 function SignUp() {
 
@@ -43,6 +44,8 @@ function SignUp() {
         invalid ={formik.touched.firstname && formik.errors.firstname? true : false }
         formik = {formik }
       />
+      <TextBoxValidation  formik = {formik} name="firstname" />
+
 
       <TextBox
         id="lastname"
@@ -58,6 +61,8 @@ function SignUp() {
         invalid ={formik.touched.lastname && formik.errors.lastname? true : false }
         formik = {formik }
       />
+      <TextBoxValidation  formik = {formik} name="lastname" />
+
          
 
       <TextBox
@@ -74,6 +79,8 @@ function SignUp() {
         invalid ={formik.touched.email && formik.errors.email? true : false }
         formik = {formik }
       />
+        <TextBoxValidation  formik = {formik} name="email" />
+
        
 
       <TextBox
@@ -90,6 +97,8 @@ function SignUp() {
         invalid ={formik.touched.password && formik.errors.password? true : false }
         formik = {formik }
       />
+        <TextBoxValidation  formik = {formik} name="password" />
+
       
       <Submit children="Sign Up " />
 
