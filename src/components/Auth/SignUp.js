@@ -22,9 +22,8 @@ function SignUp() {
     firstname: Yup.string().required("Required"),
     lastname: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email address").required("Required"),
-    password: Yup.string()
-      .min(8, "Enter at least 8 characters!!")
-      .required("Required"),
+    password: Yup.string().min(8, "Enter at least 8 characters!!").required("Required"),
+  
   });
 
   const onSubmit = (values) => {
