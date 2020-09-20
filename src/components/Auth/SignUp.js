@@ -8,7 +8,7 @@ import userIconSrc from "../../assets/icons/user.svg";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import TextBoxValidation from "./TexBoxValidation";
-import Swal from "sweetalert2";
+import getData from '../../services/getData'; 
 
 function SignUp() {
   const initialValues = {
@@ -28,56 +28,11 @@ function SignUp() {
   });
 
   const onSubmit = (values) => {
-    fetch("https://api.raisely.com/v3/signup", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: {
-          firstName: values.firstname,
-          lastName: values.lastName,
-          email: values.email,
-          password: values.password,
-        },
-        campaignUuid: "46aa3270-d2ee-11ea-a9f0-e9a68ccff42a",
-      }),
-    })
-      .then((result) => {
-        return result.json();
-      })
-      .then((res) => {
-        if (!res.errors) {
-          Swal.fire({
-            title: "success!",
-            text: "successfully Regiestered Account!",
-            icon: "success",
-            confirmButtonText: "Ok",
-          }).then(()=>{
-            formik.setFieldValue("firstname","" ,false);
-            formik.setFieldValue("lastname" , "" , false);
-            formik.setFieldValue("email", "" ,false); 
-            formik.setFieldValue("password", "" , false); 
-            
-          });
-        } else {
-          Swal.fire({
-            title: "Error",
-            text: `This account ${res.errors[0].code}`,
-            icon: "error",
-            confirmButtonText: "Ok",
-          }).then(() => {
-            formik.setFieldValue("email", ""); 
-            
-           });
-        }
 
-      })
-      .catch((error) => {
-        console.log("error :  ", error);
-      })
+    getData(formik , values)
+  
   };
+
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
   return (
