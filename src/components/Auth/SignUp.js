@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { Form } from "reactstrap";
 import TextBox from "./TextBox";
 import Submit from "./Submit";
@@ -8,23 +8,88 @@ import userIconSrc from "../../Assets/icons/user.svg"
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import TextBoxValidation from './TexBoxValidation'; 
+import Swal from 'sweetalert2'
 
 function SignUp() {
 
   const initialValues = { firstname: '',lastname: '',email: '',password: ''} ; 
 
+ 
   const validationSchema = Yup.object({
     firstname: Yup.string().required("Required"),
     lastname: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email address").required("Required"), 
     password:Yup.string().min(8 , 'Enter at least 8 characters!!').required("Required")
   }) ; 
-
+  
   const onSubmit = (values)=>{
-    console.log(values);
-  }
+    fetch("https://api.raisely.com/v3/signup" , {
 
+    method:"POST", 
+    mode:"cors",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+     body: JSON.stringify({
+      data: {
+        firstName: values.firstname,
+        lastName: values.lastName,
+        email: values.email,
+        password: values.password
+      },
+      campaignUuid: '46aa3270-d2ee-11ea-a9f0-e9a68ccff42a'
+    })
+  }).then(result=>{
+    return result.json()
+    }).then(res=>{
+      
+      console.log("Result : ", !res.errors); 
+      console.log("Result : ", res); 
+
+      if(!res.errors){
+      Swal.fire({
+        title: 'success!',
+        text: 'successfully Regiestered Account!',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      })
+    } else{
+      Swal.fire({
+        title: 'Error',
+        text: `This Account ${res.errors[0].code}`,
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      }).then(()=>{
+                document.getElementById("email").value="" ; 
+      })
+    }
+    }).catch(error=>{
+      console.log("error :  " , error)
+    })
+  }
   const formik = useFormik({ initialValues , validationSchema , onSubmit })
+
+  // useEffect(()=>{
+  //   fetch("https://api.raisely.com/v3/check-user " , {
+  //     method:"POST" ,
+  //     mod:"no-cors", 
+  //     headers:{'Content-Type' : 'application/json'},
+  //     body:JSON.stringify({
+  //       data : {
+  //         email : formik.values.email 
+  //       }, 
+  //       campaignUuid: "46aa3270-d2ee-11ea-a9f0-e9a68ccff42a",
+  //     }) 
+  // }).then(response =>{
+  //   return response.json();
+  // }).then(result =>{
+  //   console.log("result : " , result); 
+  // }).catch(error=>{
+  //   console.log("error : " ,error);
+  // })
+
+  // } , [formik.values.email])
+
 
   return (
 
