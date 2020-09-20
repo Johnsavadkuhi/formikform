@@ -1,100 +1,108 @@
-import React  from "react";
+import React from "react";
 import { Form } from "reactstrap";
 import TextBox from "./TextBox";
 import Submit from "./Submit";
-import iconSrc from "../../Assets/icons/email.svg";
-import passIconSrc from "../../Assets/icons/password.svg";
-import userIconSrc from "../../Assets/icons/user.svg"
+import iconSrc from "../../assets/icons/email.svg";
+import passIconSrc from "../../assets/icons/password.svg";
+import userIconSrc from "../../assets/icons/user.svg";
 import { useFormik } from "formik";
-import * as Yup from 'yup';
-import TextBoxValidation from './TexBoxValidation'; 
-import Swal from 'sweetalert2'
+import * as Yup from "yup";
+import TextBoxValidation from "./TexBoxValidation";
+import Swal from "sweetalert2";
 
 function SignUp() {
+  const initialValues = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  };
 
-  const initialValues = { firstname: '',lastname: '',email: '',password: ''} ; 
-
- 
   const validationSchema = Yup.object({
     firstname: Yup.string().required("Required"),
     lastname: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email address").required("Required"), 
-    password:Yup.string().min(8 , 'Enter at least 8 characters!!').required("Required")
-  }) ; 
-  
-  const onSubmit = (values)=>{
-    fetch("https://api.raisely.com/v3/signup" , {
+    email: Yup.string().email("Invalid email address").required("Required"),
+    password: Yup.string()
+      .min(8, "Enter at least 8 characters!!")
+      .required("Required"),
+  });
 
-    method:"POST", 
-    mode:"cors",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-     body: JSON.stringify({
-      data: {
-        firstName: values.firstname,
-        lastName: values.lastName,
-        email: values.email,
-        password: values.password
+  const onSubmit = (values) => {
+    fetch("https://api.raisely.com/v3/signup", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
       },
-      campaignUuid: '46aa3270-d2ee-11ea-a9f0-e9a68ccff42a'
+      body: JSON.stringify({
+        data: {
+          firstName: values.firstname,
+          lastName: values.lastName,
+          email: values.email,
+          password: values.password,
+        },
+        campaignUuid: "46aa3270-d2ee-11ea-a9f0-e9a68ccff42a",
+      }),
     })
-  }).then(result=>{
-    return result.json()
-    }).then(res=>{
-      
-      console.log("Result : ", !res.errors); 
-      console.log("Result : ", res); 
+      .then((result) => {
+        return result.json();
+      })
+      .then((res) => {
+        if (!res.errors) {
+          Swal.fire({
+            title: "success!",
+            text: "successfully Regiestered Account!",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(()=>{
+            formik.setFieldValue("firstname","" ,false);
+            formik.setFieldValue("lastname" , "" , false);
+            formik.setFieldValue("email", "" ,false); 
+            formik.setFieldValue("password", "" , false); 
+            
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: `This account ${res.errors[0].code}`,
+            icon: "error",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            formik.setFieldValue("email", ""); 
+            
+           });
+        }
 
-      if(!res.errors){
-      Swal.fire({
-        title: 'success!',
-        text: 'successfully Regiestered Account!',
-        icon: 'success',
-        confirmButtonText: 'Ok'
       })
-    } else{
-      Swal.fire({
-        title: 'Error',
-        text: `This Account ${res.errors[0].code}`,
-        icon: 'error',
-        confirmButtonText: 'Ok'
-      }).then(()=>{
-                document.getElementById("email").value="" ; 
+      .catch((error) => {
+        console.log("error :  ", error);
       })
-    }
-    }).catch(error=>{
-      console.log("error :  " , error)
-    })
-  }
-  const formik = useFormik({ initialValues , validationSchema , onSubmit })
+  };
+  const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
   // useEffect(()=>{
   //   fetch("https://api.raisely.com/v3/check-user " , {
   //     method:"POST" ,
-  //     mod:"no-cors", 
+  //     mod:"no-cors",
   //     headers:{'Content-Type' : 'application/json'},
   //     body:JSON.stringify({
   //       data : {
-  //         email : formik.values.email 
-  //       }, 
+  //         email : formik.values.email
+  //       },
   //       campaignUuid: "46aa3270-d2ee-11ea-a9f0-e9a68ccff42a",
-  //     }) 
+  //     })
   // }).then(response =>{
   //   return response.json();
   // }).then(result =>{
-  //   console.log("result : " , result); 
+  //   console.log("result : " , result);
   // }).catch(error=>{
   //   console.log("error : " ,error);
   // })
 
   // } , [formik.values.email])
 
-
   return (
-
     <Form className="sign-up" onSubmit={formik.handleSubmit}>
-
       <TextBox
         id="firstname"
         iconSrc={userIconSrc}
@@ -105,12 +113,20 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.firstname}
-        valid = {formik.values.firstname.length > 0 ? true  &&  !(formik.touched.firstname && formik.errors.firstname? true : false ) : false }
-        invalid ={formik.touched.firstname && formik.errors.firstname? true : false }
-        formik = {formik }
+        valid={
+          formik.values.firstname.length > 0
+            ? true &&
+              !(formik.touched.firstname && formik.errors.firstname
+                ? true
+                : false)
+            : false
+        }
+        invalid={
+          formik.touched.firstname && formik.errors.firstname ? true : false
+        }
+        formik={formik}
       />
-      <TextBoxValidation  formik = {formik} name="firstname" />
-
+      <TextBoxValidation formik={formik} name="firstname" />
 
       <TextBox
         id="lastname"
@@ -122,13 +138,20 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.lastname}
-        valid ={formik.values.lastname.length > 0 ? true  &&  !(formik.touched.lastname && formik.errors.lastname? true : false ) : false }
-        invalid ={formik.touched.lastname && formik.errors.lastname? true : false }
-        formik = {formik }
+        valid={
+          formik.values.lastname.length > 0
+            ? true &&
+              !(formik.touched.lastname && formik.errors.lastname
+                ? true
+                : false)
+            : false
+        }
+        invalid={
+          formik.touched.lastname && formik.errors.lastname ? true : false
+        }
+        formik={formik}
       />
-      <TextBoxValidation  formik = {formik} name="lastname" />
-
-         
+      <TextBoxValidation formik={formik} name="lastname" />
 
       <TextBox
         id="email"
@@ -140,13 +163,16 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.email}
-        valid={formik.values.email.length > 0 ? true  &&  !(formik.touched.email && formik.errors.email? true : false ) : false }
-        invalid ={formik.touched.email && formik.errors.email? true : false }
-        formik = {formik }
+        valid={
+          formik.values.email.length > 0
+            ? true &&
+              !(formik.touched.email && formik.errors.email ? true : false)
+            : false
+        }
+        invalid={formik.touched.email && formik.errors.email ? true : false}
+        formik={formik}
       />
-        <TextBoxValidation  formik = {formik} name="email" />
-
-       
+      <TextBoxValidation formik={formik} name="email" />
 
       <TextBox
         id="password"
@@ -158,22 +184,24 @@ function SignUp() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.password}
-        valid={formik.values.password.length > 0 ? true && !(formik.touched.password && formik.errors.password? true : false ) : false }
-        invalid ={formik.touched.password && formik.errors.password? true : false }
-        formik = {formik }
+        valid={
+          formik.values.password.length > 0
+            ? true &&
+              !(formik.touched.password && formik.errors.password
+                ? true
+                : false)
+            : false
+        }
+        invalid={
+          formik.touched.password && formik.errors.password ? true : false
+        }
+        formik={formik}
       />
-        <TextBoxValidation  formik = {formik} name="password" />
+      <TextBoxValidation formik={formik} name="password" />
 
-      
       <Submit children="Sign Up " />
-
-
     </Form>
-
   );
-
-
-
 }
 
 export default SignUp;
