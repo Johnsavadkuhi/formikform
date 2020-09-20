@@ -80,27 +80,6 @@ function SignUp() {
   };
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
-  // useEffect(()=>{
-  //   fetch("https://api.raisely.com/v3/check-user " , {
-  //     method:"POST" ,
-  //     mod:"no-cors",
-  //     headers:{'Content-Type' : 'application/json'},
-  //     body:JSON.stringify({
-  //       data : {
-  //         email : formik.values.email
-  //       },
-  //       campaignUuid: "46aa3270-d2ee-11ea-a9f0-e9a68ccff42a",
-  //     })
-  // }).then(response =>{
-  //   return response.json();
-  // }).then(result =>{
-  //   console.log("result : " , result);
-  // }).catch(error=>{
-  //   console.log("error : " ,error);
-  // })
-
-  // } , [formik.values.email])
-
   return (
     <Form className="sign-up" onSubmit={formik.handleSubmit}>
       <TextBox
