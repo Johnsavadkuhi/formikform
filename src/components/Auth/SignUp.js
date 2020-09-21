@@ -8,7 +8,7 @@ import userIconSrc from "../../assets/icons/user.svg";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import TextBoxValidation from "./TexBoxValidation";
-import getData from '../../services/getData'; 
+import getData from "../../services/getData";
 
 function SignUp() {
   const initialValues = {
@@ -22,14 +22,13 @@ function SignUp() {
     firstname: Yup.string().required("Required"),
     lastname: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email address").required("Required"),
-    password: Yup.string().min(8, "Enter at least 8 characters!!").required("Required"),
-  
+    password: Yup.string()
+      .min(8, "Enter at least 8 characters!!")
+      .required("Required"),
   });
 
   const onSubmit = (values) => {
-
-    getData(formik , values)
-  
+    getData(formik, values);
   };
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
